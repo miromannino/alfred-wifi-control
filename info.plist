@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.miromannino.wifi-control</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>EE904F97-5920-404F-A373-73C19CD07757</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>88598D96-61A4-44AB-91C9-CAABB6C7B171</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Miro Mannino</string>
+	<key>description</key>
+	<string>Control Wi-Fi Status</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Wi-Fi Control</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>wifi</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>script</key>
+				<string>python wifi.py {query}</string>
+				<key>subtext</key>
+				<string>Control Wi-Fi</string>
+				<key>title</key>
+				<string>Wi-Fi Control</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>EE904F97-5920-404F-A373-73C19CD07757</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+	set dev to (do shell script "networksetup -listallhardwareports | grep -A 1 Wi-Fi | tail -n 1 | cut -b 9-12")
+	if q is equal to "restart" then
+		do shell script "networksetup -setairportpower " &amp; dev &amp; " off; /bin/sleep 2; networksetup -setairportpower " &amp; dev &amp; " on"
+	else if q is equal to "on" then
+		do shell script "networksetup -setairportpower " &amp; dev &amp; " on"
+	else if q is equal to "off" then
+		do shell script "networksetup -setairportpower " &amp; dev &amp; " off"
+	else (* toggle *)
+		if (offset of "On" in (do shell script "networksetup -getairportpower " &amp; dev)) &gt; 0 then
+			do shell script "networksetup -setairportpower " &amp; dev &amp; " off"
+		else
+			do shell script "networksetup -setairportpower " &amp; dev &amp; " on"
+		end if
+	end if
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>88598D96-61A4-44AB-91C9-CAABB6C7B171</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>88598D96-61A4-44AB-91C9-CAABB6C7B171</key>
+		<dict>
+			<key>ypos</key>
+			<real>180</real>
+		</dict>
+		<key>EE904F97-5920-404F-A373-73C19CD07757</key>
+		<dict>
+			<key>ypos</key>
+			<real>180</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://miromannino.com</string>
+</dict>
+</plist>
