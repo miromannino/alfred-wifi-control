@@ -13,6 +13,11 @@ The workflow will suggest all the available actions.
 
 ![tw screenshot](https://raw.githubusercontent.com/miromannino/alfred-wifi-control/master/screenshot.png "screenshot")
 
+- Wi-Fi On: To turn on the Wi-Fi. If it is on this command doesn't have effects.
+- Wi-Fi Off: To turn off the Wi-Fi. If it is off this command doesn't have effects.
+- Wi-Fi Toggle: To turn on the Wi-Fi if it is off, and off if it is on.
+- Wi-Fi Restart: To restart the Wi-Fi.
+
 The commands are not strict and difficult to memorize: the suggestions are filtered based on the multiple way you could express your intention. For example, to turn on the Wi-Fi you can write phrases like: `wifi on`, `wifi activate`, `wifi up`, etc.
 
 
