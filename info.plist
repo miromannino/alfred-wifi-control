@@ -33,6 +33,36 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+	set dev to (do shell script "networksetup -listallhardwareports | grep -A 1 Wi-Fi | tail -n 1 | cut -b 9-12")
+	if q is equal to "restart" then
+		do shell script "(networksetup -setairportpower " &amp; dev &amp; " off; /bin/sleep 2; networksetup -setairportpower " &amp; dev &amp; " on) &gt; /dev/null 2&gt;&amp;1 &amp;"
+	else if q is equal to "on" then
+		do shell script "networksetup -setairportpower " &amp; dev &amp; " on"
+	else if q is equal to "off" then
+		do shell script "networksetup -setairportpower " &amp; dev &amp; " off"
+	else (* toggle *)
+		if (offset of "On" in (do shell script "networksetup -getairportpower " &amp; dev)) &gt; 0 then
+			do shell script "networksetup -setairportpower " &amp; dev &amp; " off"
+		else
+			do shell script "networksetup -setairportpower " &amp; dev &amp; " on"
+		end if
+	end if
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>88598D96-61A4-44AB-91C9-CAABB6C7B171</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -62,36 +92,6 @@
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>EE904F97-5920-404F-A373-73C19CD07757</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>applescript</key>
-				<string>on alfred_script(q)
-	set dev to (do shell script "networksetup -listallhardwareports | grep -A 1 Wi-Fi | tail -n 1 | cut -b 9-12")
-	if q is equal to "restart" then
-		do shell script "networksetup -setairportpower " &amp; dev &amp; " off; /bin/sleep 2; networksetup -setairportpower " &amp; dev &amp; " on"
-	else if q is equal to "on" then
-		do shell script "networksetup -setairportpower " &amp; dev &amp; " on"
-	else if q is equal to "off" then
-		do shell script "networksetup -setairportpower " &amp; dev &amp; " off"
-	else (* toggle *)
-		if (offset of "On" in (do shell script "networksetup -getairportpower " &amp; dev)) &gt; 0 then
-			do shell script "networksetup -setairportpower " &amp; dev &amp; " off"
-		else
-			do shell script "networksetup -setairportpower " &amp; dev &amp; " on"
-		end if
-	end if
-end alfred_script</string>
-				<key>cachescript</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.applescript</string>
-			<key>uid</key>
-			<string>88598D96-61A4-44AB-91C9-CAABB6C7B171</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
