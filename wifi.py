@@ -26,4 +26,4 @@ def suggestCommands(query):
 res = suggestCommands(sys.argv[1] if len(sys.argv) > 1 else "")
 if res is not None:
     print('<?xml version="1.0"?>')
-    print(ET.tostring(res))
+    print(ET.tostring(res, encoding="unicode"))
