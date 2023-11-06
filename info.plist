@@ -78,7 +78,7 @@ end alfred_script</string>
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>script</key>
-				<string>python wifi.py {query}</string>
+				<string>python3 wifi.py {query}</string>
 				<key>subtext</key>
 				<string>Control Wi-Fi</string>
 				<key>title</key>

@@ -26,3 +26,9 @@ General notes
 
  - The workflow is compatible with Alfred 2 and Alfred 3
  - Once the workflow has been imported, feel free to change the default keywords if you don't like them.
+
+
+For developers
+-------------
+
+- `zip Wi-Fi\ Control.alfredworkflow icon.png info.plist wifi.py`
